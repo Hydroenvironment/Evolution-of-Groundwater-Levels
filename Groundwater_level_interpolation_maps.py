@@ -1,3 +1,4 @@
+
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
@@ -17,19 +18,19 @@ for i in Wells.index.tolist():
         pass
 
 #%% Filter wells with data in March, April,2019
-SpatialTable2 = pd.DataFrame(columns=['Well', 'x', 'y', 'MeanGroundwaterLevel2', 'LevelMarchApril2019', 'Difference'])
-StartSpring2019 = pd.Timestamp(2018,9,1)
-EndSpring2019 = pd.Timestamp(2019,11,30)
+SpatialTable2 = pd.DataFrame(columns=['Well', 'x', 'y', 'MeanGroundwaterLevel', 'LevelAutumn2018', 'Difference'])
+StartAutumn2018 = pd.Timestamp(2018,9,1)
+EndAutumn2018 = pd.Timestamp(2018,11,30)
 
 for i in range(0,520):
     if Data[i].count()[0] > 1: # so that wells with only one measurement are not taken into account
-        LevelsMarchApril=[]      
+        LevelsAutumn=[]      
         for k in Data[i].index.tolist():
-            if StartSpring2019 < Data[i].iloc[k,16] < EndSpring2019:
-                LevelsMarchApril.append(Data[i].iloc[k,18])         
+            if StartAutumn2018 < Data[i].iloc[k,16] < EndAutumn2018:
+                LevelsAutumn.append(Data[i].iloc[k,18])         
         try:
-            LevelsMarchApril2019 = statistics.mean(LevelsMarchApril)
-            SpTi = pd.DataFrame([Data[i].iloc[0,3],Data[i].iloc[0,6], Data[i].iloc[0,7],Data[i].mean()[-2],LevelsMarchApril2019,LevelsMarchApril2019 - Data[i].mean()[-2]], index=['Well', 'x', 'y', 'MeanGroundwaterLevel2', 'LevelMarchApril2019','Difference'])
+            LevelsAutumn2018 = statistics.mean(LevelsAutumn)
+            SpTi = pd.DataFrame([Data[i].iloc[0,3],Data[i].iloc[0,6], Data[i].iloc[0,7],Data[i].mean()[-2],LevelsAutumn2018,LevelsAutumn2018 - Data[i].mean()[-2]], index=['Well', 'x', 'y', 'MeanGroundwaterLevel', 'LevelAutumn2018','Difference'])
             SpTi = SpTi.transpose()
             SpatialTable2 = SpatialTable2.append(SpTi)
         except:
@@ -108,4 +109,3 @@ ax.scatter(lons, lats, c='blue')
 for i in gpo['geometry']:
         ax.add_patch(PolygonPatch(i, fill=False, alpha=0.5, zorder=2, hatch='////'))
 plt.show()
-
