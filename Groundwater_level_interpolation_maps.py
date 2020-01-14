@@ -76,19 +76,19 @@ OK = OrdinaryKriging(lons, lats, data, variogram_model='spherical', nlags=25, ve
 grid_x = np.linspace(150000, 250000, num = 100, endpoint = False)
 grid_y = np.linspace(160000, 220000, num = 100, endpoint = False)
 
-z, ss = OK.execute('grid', grid_x, grid_y) # z son los datos y ss la varianza
+z, ss = OK.execute('grid', grid_x, grid_y) # z are the data y ss the variance
 
-kt.write_asc_grid(grid_x, grid_y, z, filename="kriging_ordinary.asc") #Kriging Ordinario en forma de matriz
+kt.write_asc_grid(grid_x, grid_y, z, filename="kriging_ordinary.asc") #Ordinary Kriging in matrix form
 
 
-kt.write_asc_grid(grid_x, grid_y, ss, filename="kriging_ordinary_var.asc") #Varianza de estimación en forma de matriz
+kt.write_asc_grid(grid_x, grid_y, ss, filename="kriging_ordinary_var.asc") #Estimating variance in matrix form
 
 asc = pd.read_csv("kriging_ordinary.asc", header=None, skiprows=7, sep="\s+") 
 asc.shape #comprobar que sean 70 filas y 80 columnas
 
-cu2 = np.array(asc) #Conversión pandas dataframe a ndarray
+cu2 = np.array(asc) #Converting pandas dataframe to numpy array
 
-#%%ploteo del mapa krigging
+#%%Plotting map with krigging interpolation
 import geopandas as gdp
 from descartes import PolygonPatch
 
@@ -109,3 +109,5 @@ ax.scatter(lons, lats, c='blue')
 for i in gpo['geometry']:
         ax.add_patch(PolygonPatch(i, fill=False, alpha=0.5, zorder=2, hatch='////'))
 plt.show()
+#Save as PDF document
+fig.savefig("foo.pdf", bbox_inches='tight')
