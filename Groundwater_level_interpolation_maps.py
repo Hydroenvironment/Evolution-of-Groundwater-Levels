@@ -1,3 +1,4 @@
+
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
@@ -180,7 +181,7 @@ def Spatial_Map(df, filename):
     #Krigging map plot
     from descartes import PolygonPatch #PolygonPatch: Constructs a matplotlib patch from a geometric object, but what is a "matplotlibpatch"??
 
-    gpo = gdp.read_file("C:\\Users\\Julio\\Desktop\\IUPWARE\\ENVIRONMENTAL PROGRAMMING\\Project Groundwater\\Data\\Groundwaterbodies_Oligocene\\")
+    gpo = gdp.read_file("C:\\Users\\Julio\\Desktop\\IUPWARE\\ENVIRONMENTAL PROGRAMMING\\Project Groundwater\\Data\\Groundwaterbodies_Oligocene\\Groundwaterbodies_Oligocene.shp")
 
     fig = plt.figure(figsize = (12,12))
     ax = fig.gca()
