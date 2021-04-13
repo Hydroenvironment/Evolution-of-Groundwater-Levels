@@ -1,5 +1,4 @@
 # 📈 Evolution-of-Groundwater-Levels
-
 💧These scripts will be very helpful when we have complex and large lists of time series in groundwater monitoring wells with the following
 tasks:
 ✔️ Plots with normalized data on one graph, representing the data points by dots. Save the figure as pdf
